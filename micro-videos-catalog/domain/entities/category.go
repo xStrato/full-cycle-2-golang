@@ -1,29 +1,28 @@
 package entities
 
-import "errors"
+import (
+	"errors"
+
+	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/domain/common"
+)
 
 type Category struct {
-	id, name string
+	*common.Entity
+	name string
 }
 
 func NewCategory(name string) *Category {
-	return &Category{name: name}
-}
-
-func NewFullCategory(id, name string) *Category {
-	return &Category{id, name}
-}
-
-func (c *Category) GetId() string {
-	return c.id
-}
-
-func (c *Category) SetId(id string) error {
-	if len(id) <= 0 {
-		return errors.New("'id' cannot be empty")
+	return &Category{
+		Entity: common.NewEntity(),
+		name:   name,
 	}
-	c.id = id
-	return nil
+}
+
+func NewCategoryWithId(id, name string) *Category {
+	return &Category{
+		Entity: common.NewEntityWithId(id),
+		name:   name,
+	}
 }
 
 func (c *Category) GetName() string {
