@@ -14,20 +14,7 @@ type CastMember struct {
 	castMemberType constants.CastMemberType
 }
 
-func NewCastMember(name string) *CastMember {
-	return &CastMember{
-		Entity: common.NewEntity(),
-		name:   name,
-	}
-}
-
-func NewCastMemberWithId(id, name string) *CastMember {
-	return &CastMember{
-		Entity: common.NewEntityWithId(id),
-		name:   name,
-	}
-}
-func NewCastMemberWithMemberType(name string, cmt constants.CastMemberType) *CastMember {
+func NewCastMember(name string, cmt constants.CastMemberType) *CastMember {
 	return &CastMember{
 		Entity:         common.NewEntity(),
 		name:           name,
@@ -35,7 +22,7 @@ func NewCastMemberWithMemberType(name string, cmt constants.CastMemberType) *Cas
 	}
 }
 
-func NewCastMemberWithIdAndMemberType(id, name string, cmt constants.CastMemberType) *CastMember {
+func NewCastMemberWithId(id, name string, cmt constants.CastMemberType) *CastMember {
 	return &CastMember{
 		Entity:         common.NewEntityWithId(id),
 		name:           name,

@@ -15,8 +15,8 @@ func TestCastMember(t *testing.T) {
 		// Arrange
 		id, name, cmt := uuid.NewV4().String(), "DiCaprio", constants.TYPE1
 		// Act
-		c1 := entities.NewCastMemberWithIdAndMemberType(id, name, cmt)
-		c2 := entities.NewCastMemberWithMemberType(name, cmt)
+		c1 := entities.NewCastMemberWithId(id, name, cmt)
+		c2 := entities.NewCastMember(name, cmt)
 		//Assert
 		require.NotNil(t, c1)
 		require.NotNil(t, c2)
@@ -31,7 +31,7 @@ func TestCastMember(t *testing.T) {
 	t.Run("SetName_InvalidNameParams_ShouldReturnErrorNotNil", func(t *testing.T) {
 		// Arrange
 		id, name, cmt := uuid.NewV4().String(), "DiCaprio", constants.TYPE1
-		c := entities.NewCastMemberWithIdAndMemberType(id, name, cmt)
+		c := entities.NewCastMemberWithId(id, name, cmt)
 		errorMsg := "'name' cannot be empty"
 		// Act
 		err := c.SetName("")
@@ -43,7 +43,7 @@ func TestCastMember(t *testing.T) {
 	t.Run("SetId_InvalidUUIDParams_ShouldReturnErrorNotNil", func(t *testing.T) {
 		// Arrange
 		id, name, cmt := uuid.NewV4().String(), "DiCaprio", constants.TYPE1
-		c := entities.NewCastMemberWithIdAndMemberType(id, name, cmt)
+		c := entities.NewCastMemberWithId(id, name, cmt)
 		errorMsg1 := "'id' cannot be empty"
 		errorMsg2 := "'id' is not a valid UUID"
 		// Act
@@ -58,7 +58,7 @@ func TestCastMember(t *testing.T) {
 	t.Run("SetCastMemberType_InvalidCastMemberParams_ShouldReturnErrorNotNil", func(t *testing.T) {
 		// Arrange
 		id, name, cmt := uuid.NewV4().String(), "DiCaprio", constants.TYPE1
-		c := entities.NewCastMemberWithIdAndMemberType(id, name, cmt)
+		c := entities.NewCastMemberWithId(id, name, cmt)
 
 		invalidCastMemberType := "TYPE3"
 		errorMsg1 := "'CastMember' cannot be empty"
