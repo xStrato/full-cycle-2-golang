@@ -82,10 +82,7 @@ func TestVideo(t *testing.T) {
 		// Act
 		err1 := v.AddT(c)
 		err2 := v.AddT(g)
-		v.AddT(g)
 		err3 := v.AddT(cm)
-		v.AddT(cm)
-		v.AddT(cm)
 		//Assert
 		require.NotNil(t, v)
 		require.NoError(t, err1)
@@ -136,7 +133,6 @@ func TestVideo(t *testing.T) {
 		err1 := v.RemoveT(c)
 		err2 := v.RemoveT(g)
 		err3 := v.RemoveT(cm)
-		v.RemoveT(cm)
 		//Assert
 		require.NotNil(t, v)
 		require.NoError(t, err1)

@@ -6,6 +6,7 @@ import (
 	"reflect"
 	"time"
 
+	linq "github.com/ahmetb/go-linq/v3"
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/domain/common"
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/domain/interfaces"
 )
@@ -179,13 +180,22 @@ func (v *Video) AddT(t interfaces.Entity) error {
 	}
 	switch entity := t.(type) {
 	case *Category:
-		v.addCategory(entity)
+		query := linq.From(v.categories)
+		if _, ok := contains(t.GetId(), &query); !ok {
+			v.categories = append(v.categories, *entity)
+		}
 		return nil
 	case *Genre:
-		v.addGenre(entity)
+		query := linq.From(v.genres)
+		if _, ok := contains(t.GetId(), &query); !ok {
+			v.genres = append(v.genres, *entity)
+		}
 		return nil
 	case *CastMember:
-		v.addCastMember(entity)
+		query := linq.From(v.castMembers)
+		if _, ok := contains(t.GetId(), &query); !ok {
+			v.castMembers = append(v.castMembers, *entity)
+		}
 		return nil
 	}
 	return fmt.Errorf("type '%v' is not supported", t)
@@ -197,66 +207,30 @@ func (v *Video) RemoveT(t interfaces.Entity) error {
 	}
 	switch t.(type) {
 	case *Category:
-		v.removeCategory(t.GetId())
+		query := linq.From(v.categories)
+		if i, ok := contains(t.GetId(), &query); ok {
+			v.categories = append(v.categories[:i], v.categories[i+1:]...)
+		}
 		return nil
 	case *Genre:
-		v.removeGenre(t.GetId())
+		query := linq.From(v.genres)
+		if i, ok := contains(t.GetId(), &query); ok {
+			v.genres = append(v.genres[:i], v.genres[i+1:]...)
+		}
 		return nil
 	case *CastMember:
-		v.removeCastMember(t.GetId())
+		query := linq.From(v.castMembers)
+		if i, ok := contains(t.GetId(), &query); ok {
+			v.castMembers = append(v.castMembers[:i], v.castMembers[i+1:]...)
+		}
 		return nil
 	}
 	return fmt.Errorf("type '%v' is not supported", t)
 }
 
-func (v *Video) removeCategory(id string) {
-	for i := range v.categories {
-		if v.categories[i].GetId() == id {
-			v.categories = append(v.categories[:i], v.categories[i+1:]...)
-			return
-		}
-	}
-}
-func (v *Video) removeGenre(id string) {
-	for i := range v.genres {
-		if v.genres[i].GetId() == id {
-			v.genres = append(v.genres[:i], v.genres[i+1:]...)
-			return
-		}
-	}
-}
-func (v *Video) removeCastMember(id string) {
-	for i := range v.castMembers {
-		if v.castMembers[i].GetId() == id {
-			v.castMembers = append(v.castMembers[:i], v.castMembers[i+1:]...)
-			return
-		}
-	}
-}
-
-func (v *Video) addCategory(c *Category) {
-	for _, value := range v.categories {
-		if value.GetId() == c.GetId() {
-			return
-		}
-	}
-	v.categories = append(v.categories, *c)
-}
-
-func (v *Video) addGenre(g *Genre) {
-	for _, value := range v.genres {
-		if value.GetId() == g.GetId() {
-			return
-		}
-	}
-	v.genres = append(v.genres, *g)
-}
-
-func (v *Video) addCastMember(c *CastMember) {
-	for _, value := range v.castMembers {
-		if value.GetId() == c.GetId() {
-			return
-		}
-	}
-	v.castMembers = append(v.castMembers, *c)
+func contains(id string, s *linq.Query) (int, bool) {
+	index := s.IndexOfT(func(e interfaces.Entity) bool {
+		return e.GetId() == id
+	})
+	return index, index >= 0
 }
