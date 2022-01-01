@@ -183,9 +183,9 @@ func TestVideo(t *testing.T) {
 			*entities.NewCastMember("", constants.TYPE1),
 		}
 		// Act
-		v.SetCategories(categories)
-		v.SetGenres(genres)
-		v.SetCastMembers(castMembers)
+		v.SetCategories(&categories)
+		v.SetGenres(&genres)
+		v.SetCastMembers(&castMembers)
 		//Assert
 		require.NotNil(t, v)
 		require.Len(t, v.GetCategories(), 1)
@@ -206,9 +206,9 @@ func TestVideo(t *testing.T) {
 		errorMsg2 := "'genres' cannot be empty or nil"
 		errorMsg3 := "'castMembers' cannot be empty or nil"
 		// Act
-		err1 := v.SetCategories(categories)
-		err2 := v.SetGenres(genres)
-		err3 := v.SetCastMembers(castMembers)
+		err1 := v.SetCategories(&categories)
+		err2 := v.SetGenres(&genres)
+		err3 := v.SetCastMembers(&castMembers)
 
 		//Assert
 		require.NotNil(t, v)

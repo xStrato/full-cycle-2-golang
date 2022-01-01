@@ -27,6 +27,7 @@ func NewGenreWithId(id, name string) *Genre {
 		categories: make([]Category, 0),
 	}
 }
+
 func NewGenreWithCategories(name string, c []Category) *Genre {
 	return &Genre{
 		Entity:     common.NewEntity(),

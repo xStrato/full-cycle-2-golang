@@ -146,31 +146,31 @@ func (v *Video) SetDuration(duration float64) {
 func (v *Video) GetCategories() []Category {
 	return v.categories
 }
-func (v *Video) SetCategories(c []Category) error {
-	if c == nil || len(c) <= 0 {
+func (v *Video) SetCategories(c *[]Category) error {
+	if c == nil || len(*c) <= 0 {
 		return errors.New("'categories' cannot be empty or nil")
 	}
-	v.categories = c
+	v.categories = *c
 	return nil
 }
 func (v *Video) GetGenres() []Genre {
 	return v.genres
 }
-func (v *Video) SetGenres(g []Genre) error {
-	if g == nil || len(g) <= 0 {
+func (v *Video) SetGenres(g *[]Genre) error {
+	if g == nil || len(*g) <= 0 {
 		return errors.New("'genres' cannot be empty or nil")
 	}
-	v.genres = g
+	v.genres = *g
 	return nil
 }
 func (v *Video) GetCastMembers() []CastMember {
 	return v.castMembers
 }
-func (v *Video) SetCastMembers(c []CastMember) error {
-	if c == nil || len(c) <= 0 {
+func (v *Video) SetCastMembers(c *[]CastMember) error {
+	if c == nil || len(*c) <= 0 {
 		return errors.New("'castMembers' cannot be empty or nil")
 	}
-	v.castMembers = c
+	v.castMembers = *c
 	return nil
 }
 
