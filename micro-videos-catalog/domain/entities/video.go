@@ -163,6 +163,7 @@ func (v *Video) SetGenres(g *[]Genre) error {
 	v.genres = *g
 	return nil
 }
+
 func (v *Video) GetCastMembers() []CastMember {
 	return v.castMembers
 }
