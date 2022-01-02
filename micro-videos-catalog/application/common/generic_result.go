@@ -14,7 +14,7 @@ func NewGenericResult(success bool, message string, data interface{}) *GenericRe
 	}
 }
 
-func (g *GenericResult) GetSuccess() bool {
+func (g *GenericResult) HasSuccess() bool {
 	return g.success
 }
 
