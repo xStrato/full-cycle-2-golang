@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/domain/entities"
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/domain/interfaces"
@@ -23,7 +24,7 @@ func (cr *CategoryRepository) GetById(id string) (interfaces.Entity, error) {
 func (cr *CategoryRepository) Add(e interfaces.Entity) error {
 	category, ok := e.(entities.Category)
 	if !ok {
-		// log.Fatalf("CategoryRepository Add, Error")
+		log.Fatalf("CategoryRepository Add, Error")
 	}
 	fmt.Println(category)
 	return nil
