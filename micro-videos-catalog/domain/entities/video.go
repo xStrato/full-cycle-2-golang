@@ -9,19 +9,22 @@ import (
 	linq "github.com/ahmetb/go-linq/v3"
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/domain/common"
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/domain/interfaces"
+	"gorm.io/gorm"
 )
 
 type Video struct {
-	*common.Entity
-	title        string
-	description  string
-	yearLaunched int
-	opened       bool
-	rating       string
-	duration     float64
-	categories   []Category
-	genres       []Genre
-	castMembers  []CastMember
+	*gorm.Model
+	*common.Entity `gorm:"embedded"`
+	title          string `gorm:"<-"`
+	description    string `gorm:"<-"`
+	yearLaunched   int
+	opened         bool
+	rating         string
+	duration       float64
+	categories     []Category
+	genres         []Genre
+	castMembers    []CastMember
+	videoFiles     []VideoFile
 }
 
 func NewVideo(title, description string, year int, opened bool) *Video {

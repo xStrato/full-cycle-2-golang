@@ -6,10 +6,12 @@ import (
 
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/domain/common"
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/domain/constants"
+	"gorm.io/gorm"
 )
 
 type CastMember struct {
-	*common.Entity
+	*gorm.Model
+	*common.Entity `gorm:"embedded"`
 	name           string
 	castMemberType constants.CastMemberType
 }

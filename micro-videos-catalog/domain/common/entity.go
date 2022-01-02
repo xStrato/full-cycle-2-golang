@@ -7,15 +7,15 @@ import (
 )
 
 type Entity struct {
-	id string
+	id string `gorm:"primaryKey"`
 }
 
 func NewEntity() *Entity {
-	return &Entity{uuid.NewV4().String()}
+	return &Entity{id: uuid.NewV4().String()}
 }
 
 func NewEntityWithId(id string) *Entity {
-	return &Entity{id}
+	return &Entity{id: id}
 }
 
 func (e *Entity) GetId() string {

@@ -4,13 +4,15 @@ import (
 	"errors"
 
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/domain/common"
+	"gorm.io/gorm"
 )
 
 type VideoFile struct {
-	*common.Entity
-	title    string
-	url      string
-	duration float64
+	*gorm.Model
+	*common.Entity `gorm:"embedded"`
+	title          string
+	url            string
+	duration       float64
 }
 
 func NewVideoFile(title string, duration float64) *VideoFile {

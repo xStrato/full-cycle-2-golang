@@ -4,12 +4,14 @@ import (
 	"errors"
 
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/domain/common"
+	"gorm.io/gorm"
 )
 
 type Genre struct {
-	*common.Entity
-	name       string
-	categories []Category
+	*gorm.Model
+	*common.Entity `gorm:"embedded"`
+	name           string
+	categories     []Category
 }
 
 func NewGenre(name string) *Genre {
