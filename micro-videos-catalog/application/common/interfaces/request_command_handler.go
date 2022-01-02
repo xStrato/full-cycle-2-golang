@@ -5,5 +5,5 @@ import (
 )
 
 type RequestCommandHandler interface {
-	Handle(c Command) common.GenericResult
+	Handle(cmd Command) (*common.GenericResult, error)
 }

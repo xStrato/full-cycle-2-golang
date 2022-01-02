@@ -14,17 +14,17 @@ import (
 
 type Video struct {
 	*gorm.Model
-	*common.Entity `gorm:"embedded"`
-	title          string `gorm:"<-"`
-	description    string `gorm:"<-"`
-	yearLaunched   int
-	opened         bool
-	rating         string
-	duration       float64
-	categories     []Category
-	genres         []Genre
-	castMembers    []CastMember
-	videoFiles     []VideoFile
+	*common.Entity
+	title        string
+	description  string
+	yearLaunched int
+	opened       bool
+	rating       string
+	duration     float64
+	categories   []Category
+	genres       []Genre
+	castMembers  []CastMember
+	videoFiles   []VideoFile
 }
 
 func NewVideo(title, description string, year int, opened bool) *Video {
