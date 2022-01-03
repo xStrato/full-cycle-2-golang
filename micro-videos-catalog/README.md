@@ -1,4 +1,4 @@
-# full-cycle-2-golang
+# micro-videos-catalog
 ---
 ### Adopted development approaches:
  - DDD
