@@ -1,4 +1,4 @@
-# full-cycle-2-golang
+# full-cycle-2-golang - W.I.P
 ---
 ### Adopted development approaches:
  - DDD
