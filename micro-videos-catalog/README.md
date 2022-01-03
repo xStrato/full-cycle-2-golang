@@ -1,4 +1,4 @@
-# micro-videos-catalog
+# micro-videos-catalog - W.I.P
 ---
 ### Adopted development approaches:
  - DDD
