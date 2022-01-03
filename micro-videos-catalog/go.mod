@@ -5,6 +5,7 @@ go 1.17
 require (
 	github.com/ahmetb/go-linq/v3 v3.2.0
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d
+	github.com/golang/mock v1.6.0
 	github.com/satori/go.uuid v1.2.0
 	github.com/stretchr/testify v1.7.0
 	gorm.io/driver/sqlite v1.2.6
