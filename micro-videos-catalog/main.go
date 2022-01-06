@@ -21,7 +21,7 @@ func main() {
 	videoCatalogDbContext := contexts.NewVideoCatalogContext(db)
 	videoCatalogDbContext.RunMigrations()
 
-	categoryRepository := repositories.NewCategoryRepository()
+	categoryRepository := repositories.NewCategoryRepository(videoCatalogDbContext)
 	categoryHandler := handlers.NewCategoryCommandHandler(categoryRepository)
 	categoryController := controllers.NewCategoryController(categoryHandler)
 	categoryRouter := routes.NewCategoryRouter(categoryController)

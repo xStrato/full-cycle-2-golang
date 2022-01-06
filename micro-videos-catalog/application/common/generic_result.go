@@ -1,27 +1,27 @@
 package common
 
 type GenericResult struct {
-	success bool
-	message string
-	data    interface{}
+	Success bool
+	Message string
+	Data    interface{}
 }
 
 func NewGenericResult(success bool, message string, data interface{}) *GenericResult {
 	return &GenericResult{
-		success: success,
-		message: message,
-		data:    data,
+		Success: success,
+		Message: message,
+		Data:    data,
 	}
 }
 
 func (g *GenericResult) HasSuccess() bool {
-	return g.success
+	return g.Success
 }
 
 func (g *GenericResult) GetMessage() string {
-	return g.message
+	return g.Message
 }
 
 func (g *GenericResult) GetData() interface{} {
-	return g.data
+	return g.Data
 }

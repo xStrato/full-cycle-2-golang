@@ -7,7 +7,7 @@ import (
 
 type CreateCategoryCommand struct {
 	*common.Command `json:"-" valid:"required"`
-	Name            string `json:"name" valid:"required,length(3|20)"`
+	Name            string `valid:"length(3|20)" json:"name"`
 }
 
 func init() {

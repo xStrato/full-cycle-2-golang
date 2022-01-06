@@ -32,3 +32,7 @@ func (v *VideoCatalogContext) RunMigrations() {
 		log.Fatalln("Cannot run migrations for VideoFile entity: ", err.Error())
 	}
 }
+
+func (v *VideoCatalogContext) GetDBConnection() *gorm.DB {
+	return v.db
+}

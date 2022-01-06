@@ -25,9 +25,9 @@ func (ctr *CategoryController) Create(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, common.NewGenericResult(false, "Cannot bind JSON from body", err.Error()))
 		return
 	}
-	result, err := ctr.categoryHandler.Handle(cmd)
-	if err != nil {
-		ctx.JSON(http.StatusBadRequest, common.NewGenericResult(false, "Cannot create category", err.Error()))
+	result := ctr.categoryHandler.Handle(cmd)
+	if !result.HasSuccess() {
+		ctx.JSON(http.StatusBadRequest, result)
 	}
 	ctx.JSONP(http.StatusCreated, result)
 }
