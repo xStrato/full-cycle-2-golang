@@ -20,12 +20,12 @@ func NewCategoryController(cmdHandler *handlers.CategoryCommandHandler) *Categor
 }
 
 func (ctr *CategoryController) Create(ctx *gin.Context) {
-	cmd := commands.CreateCategoryCommand{}
+	cmd := commands.NewCreateCategoryCommand()
 	if err := ctx.ShouldBindJSON(&cmd); err != nil {
 		ctx.JSON(http.StatusBadRequest, common.NewGenericResult(false, "Cannot bind JSON from body", err.Error()))
 		return
 	}
-	result, err := ctr.categoryHandler.Handle(&cmd)
+	result, err := ctr.categoryHandler.Handle(cmd)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, common.NewGenericResult(false, "Cannot create category", err.Error()))
 	}

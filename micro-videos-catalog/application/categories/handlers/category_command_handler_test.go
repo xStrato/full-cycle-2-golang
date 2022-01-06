@@ -31,7 +31,7 @@ func TestCategoryCommandHandler(t *testing.T) {
 			return nil
 		})
 
-		cmd := commands.NewCreateCategoryCommand("Movie")
+		cmd := commands.NewCreateCategoryCommandWithName("Movie")
 		expectedMessage := fmt.Sprintf("%v was successfully executed", cmd.GetCommandType())
 		// Act
 		result, err := handler.Handle(cmd)
@@ -50,9 +50,9 @@ func TestCategoryCommandHandler(t *testing.T) {
 		repository.EXPECT().Add(gomock.Any()).MaxTimes(0)
 		repository.EXPECT().Commit().MaxTimes(0)
 
-		cmd := commands.NewCreateCategoryCommand("Mo")
+		cmd := commands.NewCreateCategoryCommandWithName("Mo")
 		expectedMsg := fmt.Sprintf("%v state is invalid", cmd.GetCommandType())
-		expectedDataMsg := "Name: Mo does not validate as length(3|20)"
+		expectedDataMsg := "name: Mo does not validate as length(3|20)"
 		// Act
 		result, err := handler.Handle(cmd)
 		//Assert

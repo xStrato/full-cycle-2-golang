@@ -12,7 +12,7 @@ func TestCreateCategoryCommand(t *testing.T) {
 		// Arrange
 		name := "Movie"
 		// Act
-		c1 := commands.NewCreateCategoryCommand(name)
+		c1 := commands.NewCreateCategoryCommandWithName(name)
 		//Assert
 		require.NotNil(t, c1)
 		require.NotNil(t, c1.Command)
@@ -24,7 +24,7 @@ func TestCreateCategoryCommand(t *testing.T) {
 		// Arrange
 		name := "Mo"
 		// Act
-		c1 := commands.NewCreateCategoryCommand(name)
+		c1 := commands.NewCreateCategoryCommandWithName(name)
 		//Assert
 		require.NotNil(t, c1)
 		require.NotNil(t, c1.Command)
