@@ -28,6 +28,7 @@ func (ctr *CategoryController) Create(ctx *gin.Context) {
 	result := ctr.categoryHandler.Handle(cmd)
 	if !result.HasSuccess() {
 		ctx.JSON(http.StatusBadRequest, result)
+		return
 	}
 	ctx.JSONP(http.StatusCreated, result)
 }

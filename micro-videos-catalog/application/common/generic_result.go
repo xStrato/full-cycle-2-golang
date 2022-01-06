@@ -1,9 +1,9 @@
 package common
 
 type GenericResult struct {
-	Success bool
-	Message string
-	Data    interface{}
+	Success bool        `json:"success"`
+	Message string      `json:"message"`
+	Data    interface{} `json:"data"`
 }
 
 func NewGenericResult(success bool, message string, data interface{}) *GenericResult {
