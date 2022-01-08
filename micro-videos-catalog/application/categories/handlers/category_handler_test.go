@@ -9,14 +9,14 @@ import (
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/application/categories/commands"
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/application/categories/handlers"
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/infrastructure/data/models"
-	mock_interfaces "github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/infrastructure/data/repositories"
+	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/infrastructure/data/repositories"
 )
 
 func TestCategoryCommandHandler(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	repository := mock_interfaces.NewMockCategoryRepository(ctrl)
+	repository := repositories.NewMockCategoryRepository(ctrl)
 	handler := handlers.NewCategoryHandler(repository)
 
 	t.Run("Handle_ValidCreateCategoryCommandParams_ShouldCreateAndPersistCommand", func(t *testing.T) {

@@ -17,6 +17,7 @@ func TestCreateCategoryCommand(t *testing.T) {
 		require.NotNil(t, c1)
 		require.NotNil(t, c1.Command)
 		require.Nil(t, c1.IsValid())
+		require.Equal(t, name, c1.Name)
 		require.Equal(t, c1.GetCommandType(), "CreateCategoryCommand")
 	})
 
@@ -29,6 +30,7 @@ func TestCreateCategoryCommand(t *testing.T) {
 		require.NotNil(t, c1)
 		require.NotNil(t, c1.Command)
 		require.NotNil(t, c1.IsValid())
+		require.Equal(t, name, c1.Name)
 		require.Equal(t, c1.GetCommandType(), "CreateCategoryCommand")
 	})
 }
