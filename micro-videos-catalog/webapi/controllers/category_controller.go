@@ -10,12 +10,12 @@ import (
 )
 
 type CategoryController struct {
-	categoryHandler *handlers.CategoryCommandHandler
+	handler *handlers.CategoryHandler
 }
 
-func NewCategoryController(cmdHandler *handlers.CategoryCommandHandler) *CategoryController {
+func NewCategoryController(handler *handlers.CategoryHandler) *CategoryController {
 	return &CategoryController{
-		categoryHandler: cmdHandler,
+		handler: handler,
 	}
 }
 
@@ -25,7 +25,7 @@ func (ctr *CategoryController) Create(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, common.NewGenericResult(false, "Cannot bind JSON from body", err.Error()))
 		return
 	}
-	result := ctr.categoryHandler.Handle(cmd)
+	result := ctr.handler.Handle(cmd)
 	if !result.HasSuccess() {
 		ctx.JSON(http.StatusBadRequest, result)
 		return

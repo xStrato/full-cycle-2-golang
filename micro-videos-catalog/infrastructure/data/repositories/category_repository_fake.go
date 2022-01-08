@@ -2,7 +2,7 @@
 // Source: github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/domain/interfaces (interfaces: CategoryRepository)
 
 // Package mock_interfaces is a generated GoMock package.
-package mock_interfaces
+package repositories
 
 import (
 	reflect "reflect"

@@ -10,15 +10,15 @@ import (
 	"github.com/xStrato/full-cycle-2-golang/micro-videos-catalog/infrastructure/data/models"
 )
 
-type CategoryCommandHandler struct {
+type CategoryHandler struct {
 	repository interfaces.CategoryRepository
 }
 
-func NewCategoryCommandHandler(repo interfaces.CategoryRepository) *CategoryCommandHandler {
-	return &CategoryCommandHandler{repo}
+func NewCategoryHandler(repo interfaces.CategoryRepository) *CategoryHandler {
+	return &CategoryHandler{repo}
 }
 
-func (c *CategoryCommandHandler) Handle(cmd app_interfaces.Command) *common.GenericResult {
+func (c *CategoryHandler) Handle(cmd app_interfaces.Command) *common.GenericResult {
 	switch command := cmd.(type) {
 	case *commands.CreateCategoryCommand:
 		return c.handleCreateCommand(command)
@@ -26,7 +26,7 @@ func (c *CategoryCommandHandler) Handle(cmd app_interfaces.Command) *common.Gene
 	return common.NewGenericResult(false, fmt.Sprintf("'%v' is not supported", cmd.GetCommandType()), nil)
 }
 
-func (c *CategoryCommandHandler) handleCreateCommand(cmd *commands.CreateCategoryCommand) *common.GenericResult {
+func (c *CategoryHandler) handleCreateCommand(cmd *commands.CreateCategoryCommand) *common.GenericResult {
 	if err := cmd.IsValid(); err != nil {
 		return common.NewGenericResult(false, fmt.Sprintf("%v state is invalid", cmd.GetCommandType()), err.Error())
 	}
